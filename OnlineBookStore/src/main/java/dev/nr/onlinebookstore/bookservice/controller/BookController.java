@@ -1,0 +1,29 @@
+package dev.nr.onlinebookstore.bookservice.controller;
+
+import dev.nr.onlinebookstore.bookservice.dto.BookRequest;
+import dev.nr.onlinebookstore.bookservice.dto.BookResponse;
+import dev.nr.onlinebookstore.bookservice.exception.BookNotFoundException;
+import dev.nr.onlinebookstore.bookservice.service.BookService;
+import jakarta.validation.Valid;
+import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+@RestController
+@RequestMapping("/api/book")
+@RequiredArgsConstructor
+public class BookController {
+
+    private final BookService bookService;
+
+    @GetMapping("/{id}")
+    public ResponseEntity<BookResponse> getBook(@PathVariable("id") Long bookId) throws BookNotFoundException {
+        return ResponseEntity.ok(this.bookService.getBook(bookId));
+    }
+
+    @PostMapping
+    public ResponseEntity<BookResponse> addBook(@Valid @RequestBody BookRequest bookRequest) {
+        return ResponseEntity.ok(this.bookService.addBook(bookRequest));
+    }
+
+}
