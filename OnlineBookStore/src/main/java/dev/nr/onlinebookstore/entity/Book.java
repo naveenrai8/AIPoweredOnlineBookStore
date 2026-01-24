@@ -1,4 +1,4 @@
-package dev.nr.onlinebookstore.bookservice.entity;
+package dev.nr.onlinebookstore.entity;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
@@ -9,7 +9,7 @@ import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import java.time.Instant;
-import java.util.Date;
+import java.time.LocalDate;
 
 @Entity
 @Data
@@ -18,11 +18,11 @@ import java.util.Date;
 public class Book {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column(nullable = false)
-    private String name;
+    private String title;
 
     @Column(nullable = false, length = 20)
     private String isbn;
@@ -35,7 +35,7 @@ public class Book {
 
     @Column(nullable = false)
     @JsonFormat(pattern = "yyyy-MM-dd")
-    private Date publishedAt;
+    private LocalDate publishedAt;
 
     @CreationTimestamp
     @Column(nullable = false, updatable = false)

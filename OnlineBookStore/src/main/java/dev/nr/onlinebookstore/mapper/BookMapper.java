@@ -1,8 +1,8 @@
-package dev.nr.onlinebookstore.bookservice.mapper;
+package dev.nr.onlinebookstore.mapper;
 
-import dev.nr.onlinebookstore.bookservice.dto.BookRequest;
-import dev.nr.onlinebookstore.bookservice.dto.BookResponse;
-import dev.nr.onlinebookstore.bookservice.entity.Book;
+import dev.nr.onlinebookstore.dto.BookRequest;
+import dev.nr.onlinebookstore.dto.BookResponse;
+import dev.nr.onlinebookstore.entity.Book;
 import org.mapstruct.Mapper;
 import org.mapstruct.NullValuePropertyMappingStrategy;
 

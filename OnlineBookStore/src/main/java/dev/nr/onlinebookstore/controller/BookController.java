@@ -1,9 +1,11 @@
-package dev.nr.onlinebookstore.bookservice.controller;
+package dev.nr.onlinebookstore.controller;
 
-import dev.nr.onlinebookstore.bookservice.dto.BookRequest;
-import dev.nr.onlinebookstore.bookservice.dto.BookResponse;
-import dev.nr.onlinebookstore.bookservice.exception.BookNotFoundException;
-import dev.nr.onlinebookstore.bookservice.service.BookService;
+import dev.nr.onlinebookstore.dto.BookRequest;
+import dev.nr.onlinebookstore.dto.BookResponse;
+import dev.nr.onlinebookstore.exception.BookEntryFailedException;
+import dev.nr.onlinebookstore.exception.BookNotFoundException;
+import dev.nr.onlinebookstore.exception.PublicationNotFoundException;
+import dev.nr.onlinebookstore.service.BookService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -22,7 +24,7 @@ public class BookController {
     }
 
     @PostMapping
-    public ResponseEntity<BookResponse> addBook(@Valid @RequestBody BookRequest bookRequest) {
+    public ResponseEntity<BookResponse> addBook(@Valid @RequestBody BookRequest bookRequest) throws BookEntryFailedException, PublicationNotFoundException {
         return ResponseEntity.ok(this.bookService.addBook(bookRequest));
     }
 
