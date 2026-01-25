@@ -2,15 +2,17 @@ package dev.nr.onlinebookstore.entity;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
-@Entity
-@Builder
+import java.time.Instant;
+
+@Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Data
+@Entity
 public class Publication {
 
     @Id
@@ -23,6 +25,24 @@ public class Publication {
     @Column(nullable = false)
     private String email;
 
-    @Builder.Default
-    private boolean isDelete = false;
+    private boolean deleted = false;
+
+    @CreationTimestamp
+    @Column(nullable = false, updatable = false)
+    private Instant createdAt;
+
+    @UpdateTimestamp
+    @Column(nullable = false)
+    private Instant updatedAt;
+
+    @PrePersist
+    protected void onCreate() {
+        this.createdAt = Instant.now();
+        this.updatedAt = this.createdAt;
+    }
+
+    @PreUpdate
+    protected void onUpdate() {
+        this.updatedAt = Instant.now();
+    }
 }

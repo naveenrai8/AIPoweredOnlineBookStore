@@ -44,4 +44,17 @@ public class Book {
     @UpdateTimestamp
     @Column(nullable = false)
     private Instant updatedAt;
+
+    private boolean deleted;
+
+    @PrePersist
+    protected void onCreate() {
+        this.createdAt = Instant.now();
+        this.updatedAt = this.createdAt;
+    }
+
+    @PreUpdate
+    protected void onUpdate() {
+        this.updatedAt = Instant.now();
+    }
 }
