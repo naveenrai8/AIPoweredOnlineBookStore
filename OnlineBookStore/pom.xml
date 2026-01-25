@@ -62,6 +62,11 @@
             <groupId>org.flywaydb</groupId>
             <artifactId>flyway-database-postgresql</artifactId>
         </dependency>
+        <!-- Adding spring-boot-starter-flyway if missing or replace flyway-core -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-flyway</artifactId>
+        </dependency>
 
         <dependency>
             <groupId>org.postgresql</groupId>
